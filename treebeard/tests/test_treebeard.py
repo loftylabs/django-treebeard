@@ -14,6 +14,7 @@ from django.db.models import Q
 from django.template import Template, Context
 from django.test import TestCase
 from django.test.client import RequestFactory
+from django.templatetags.static import static
 import pytest
 
 from treebeard import numconv
@@ -2344,16 +2345,6 @@ class TestAdminTreeTemplateTags(TestCase):
                     '<script type="text/javascript" '
                     'src="/treebeard/jquery-ui-1.8.5.custom.min.js"></script>')
         assert expected == rendered
-
-    def test_get_static_url(self):
-        with self.settings(STATIC_URL=None, MEDIA_URL=None):
-            assert get_static_url() == '/'
-        with self.settings(STATIC_URL='/static/', MEDIA_URL=None):
-            assert get_static_url() == '/static/'
-        with self.settings(STATIC_URL=None, MEDIA_URL='/media/'):
-            assert get_static_url() == '/media/'
-        with self.settings(STATIC_URL='/static/', MEDIA_URL='/media/'):
-            assert get_static_url() == '/static/'
 
 
 class TestAdminTree(TestNonEmptyTree):
