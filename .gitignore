@@ -31,3 +31,5 @@ lib/
 distribute*
 share/
 .DS_store
+.env
+.vscode
